@@ -4,7 +4,7 @@
 url="${1}"
 level="30"
 
-wget --spider -r --level=${level} --no-parent -nv -o wget.log -e robots=off --wait 2 "${url}"
+wget --spider -r --level=${level} --no-parent -nv -o wget.log -R jpeg,jpg,gif,ico,css,js,pdf,png,xls -e robots=off --wait 2 "${url}"
 
 grep -ri 'http://' wget.log | grep -E -v '(\.jpg|\.jpeg|\.gif|\.css|\.js|\.pdf|\.png|\.xls)' | awk '{print $3}'|sort|uniq|sort > site_map.txt
 
